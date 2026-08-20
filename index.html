@@ -1,27 +1,74 @@
 <!DOCTYPE html>
-<html lang="pr-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>front end</title>
+    <title>Ritmo | Calendário de rotina</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .calendar-grid { gap: 9px; border: 0; }
+        .calendar-day { min-height: 96px; border: 1px solid #e5e3d9; border-radius: 10px; padding: 12px; background: #fffefa; box-shadow: 0 3px 0 #e7e5dc; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+        .calendar-day:hover { transform: translateY(-3px); border-color: #d5bfa0; box-shadow: 0 8px 16px #193b3914; z-index: 1; }
+        .calendar-day.muted { background: #f1f0eb; border-color: #e7e5dd; box-shadow: none; opacity: .72; }
+        .calendar-day.today { background: #fff3ed; border: 1px solid #ef755f; box-shadow: 0 5px 0 #e9c6b9; }
+        .calendar-day.today:hover { box-shadow: 0 10px 18px #ef755f2b; }
+        .day-number { display: inline-flex; align-items: center; justify-content: center; min-width: 24px; height: 24px; color: #586660; font-size: 11px; font-weight: 500; }
+        .calendar-day.muted .day-number { color: #aeb5ae; }
+        .today .day-number { margin: -4px 0 0 -4px; }
+        .event-list { gap: 5px; margin-top: 10px; }
+        .event { border-radius: 4px; padding: 5px 6px; box-shadow: 0 1px 0 #193b3910; }
+        #routineForm label { display: block; color: #77817d; font-size: 11px; font-weight: 700; margin-bottom: 16px; }
+        #routineForm input { display: block; width: 100%; margin-top: 8px; border: 1px solid #dfdfd7; border-radius: 7px; background: #f6f4ee; color: #172625; outline: 0; padding: 12px 13px; font: 12px Manrope, sans-serif; transition: border-color .2s ease, box-shadow .2s ease, background .2s ease; }
+        #routineForm input::placeholder { color: #aeb5ae; }
+        #routineForm input:focus { border-color: #ef755f; background: #fffefa; box-shadow: 0 0 0 3px #ef755f1f; }
+        #routineForm input[type="time"] { color-scheme: light; }
+        #routineForm .event-form-actions { margin-top: 23px; }
+        @media (max-width: 720px) { .calendar-grid { gap: 5px; } .calendar-day { min-height: 70px; padding: 7px 5px; border-radius: 7px; box-shadow: 0 2px 0 #e7e5dc; } .calendar-day:hover { transform: translateY(-1px); } .event-list { margin-top: 5px; gap: 3px; } .event { padding: 3px 2px; border-radius: 3px; } }
+    </style>
 </head>
 <body>
-    <h1>Bem-vindo à Tela Inicial</h1>
-    <p>Este é o conteúdo da tela inicial do site.</p>
-<div>
-    <p>Este é um parágrafo dentro do div.</p>
-</div>
-
-<a href="https://www.google.com">Clique aqui para ir ao Google</a>
-
-<button>Clica ai otario</button>
-<button>Clica não safado</button>
-<button>Clica não safado</button>
-<button>Clica não safado</button>
-<button>Clica não safo</button>
-    
-<h3>Ana boloas e abacaxis</h3>
-
+    <div class="app-shell">
+        <aside class="sidebar">
+            <div class="brand"><span class="brand-mark">r</span><span>ritmo</span></div>
+            <nav class="main-nav" aria-label="Navegação principal">
+                <a class="nav-item active" href="#"><span class="nav-icon">▦</span>Calendário</a>
+                <a class="nav-item" href="#agenda"><span class="nav-icon">☷</span>Minha agenda</a>
+                <a class="nav-item" href="#habitos"><span class="nav-icon">◌</span>Hábitos</a>
+                <button class="nav-item assistant-link" id="openChat"><span class="nav-icon">✦</span>Assistente Ritmo</button>
+            </nav>
+            <div class="sidebar-bottom">
+                <div class="mini-card"><div class="mini-card-top"><span>seu ritmo</span><span>✦</span></div><strong>7 dias</strong><div class="mini-progress"><span></span></div><small>Você está em uma sequência incrível.</small></div>
+                <a class="nav-item" href="#"><span class="nav-icon">⚙</span>Configurações</a>
+                <div class="profile"><div class="avatar">AM</div><div><strong>Gustavo Monteiro</strong><small>Plano pessoal</small></div><span class="more">•••</span></div>
+            </div>
+        </aside>
+        <main class="content">
+            <header class="topbar"><div><p class="eyebrow">QUINTA-FEIRA, 21 DE AGOSTO</p><h1>Bom Noite, Gustavo <span>✦</span></h1></div><div class="top-actions"><button class="icon-button" id="topChat" aria-label="Abrir Assistente Ritmo">✦</button><button class="icon-button" aria-label="Notificações">♧<i></i></button><button class="add-button" id="addRoutine">+ <span>Nova rotina</span></button></div></header>
+            <section class="overview-row"><div class="quote-block"><span class="quote-mark">“</span><p>Pequenos passos todos os dias<br><em>constroem grandes mudanças.</em></p></div><div class="stat"><span class="stat-label">ROTINAS HOJE</span><strong><span id="completedCount">03</span> <small>/ <span id="routineTotal">06</span></small></strong><span class="stat-detail" id="pendingCount">3 pendentes</span></div><div class="stat accent-stat"><span class="stat-label">SEQUÊNCIA ATUAL</span><strong>07 <small>dias</small></strong><span class="stat-detail">Seu melhor: 12 dias</span></div></section>
+            <section class="calendar-section"><div class="section-heading"><div><p class="eyebrow">SEU MÊS</p><h2 id="monthTitle">Agosto 2025</h2></div><div class="calendar-controls"><button class="today-button" id="todayButton">Hoje</button><button class="round-button" id="previousMonth" aria-label="Mês anterior">‹</button><button class="round-button" id="nextMonth" aria-label="Próximo mês">›</button></div></div><div class="calendar-wrap"><div class="weekdays"><span>DOM</span><span>SEG</span><span>TER</span><span>QUA</span><span>QUI</span><span>SEX</span><span>SÁB</span></div><div class="calendar-grid" id="calendarGrid"></div></div><div class="legend"><span><i class="dot coral"></i>Foco</span><span><i class="dot blue"></i>Bem-estar</span><span><i class="dot yellow"></i>Pessoal</span><span><i class="dot green"></i>Concluído</span></div></section>
+        </main>
+        <aside class="day-panel" id="agenda"><div class="day-panel-heading"><div><p class="eyebrow">QUINTA, 21 AGO</p><h2>Seu dia</h2></div><button class="close-panel" aria-label="Mais opções">•••</button></div><div class="day-progress"><div class="progress-ring"><strong id="progressPercent">50%</strong></div><div><strong id="progressMessage">Vamos no ritmo certo.</strong><p>Você já completou <span id="progressSummary">3 de 6</span><br>rotinas hoje.</p></div></div><div class="routine-list" id="routineList"><div class="routine-item done"><button class="check" aria-label="Marcar como pendente">✓</button><div><strong>Meditação</strong><span>06:30 · Bem-estar</span></div><b class="routine-dot blue"></b></div><div class="routine-item done"><button class="check" aria-label="Marcar como pendente">✓</button><div><strong>Leitura matinal</strong><span>07:00 · Pessoal</span></div><b class="routine-dot yellow"></b></div><div class="routine-item done"><button class="check" aria-label="Marcar como pendente">✓</button><div><strong>Treino</strong><span>08:00 · Bem-estar</span></div><b class="routine-dot green"></b></div><div class="routine-item"><button class="check" aria-label="Marcar como concluído"></button><div><strong>Revisar prioridades</strong><span>14:00 · Foco</span></div><b class="routine-dot coral"></b></div><div class="routine-item"><button class="check" aria-label="Marcar como concluído"></button><div><strong>Caminhada</strong><span>18:30 · Bem-estar</span></div><b class="routine-dot blue"></b></div><div class="routine-item"><button class="check" aria-label="Marcar como concluído"></button><div><strong>Desligar telas</strong><span>22:00 · Pessoal</span></div><b class="routine-dot yellow"></b></div></div><button class="add-task" id="addTask">+ Adicionar rotina</button><div class="focus-note"><span>✦</span><div><strong>Nota do dia</strong><p>Reserve espaço para o que faz você florescer.</p></div></div></aside>
+    </div>
+    <section class="chat-panel" id="chatPanel" aria-label="Assistente Ritmo" aria-hidden="true">
+        <div class="chat-header"><div class="assistant-avatar">✦</div><div><strong>Assistente Ritmo</strong><span>Online para ajudar você</span></div><button class="chat-close" id="closeChat" aria-label="Fechar assistente">×</button></div>
+        <div class="chat-messages" id="chatMessages"><div class="chat-message assistant-message"><span>Oi, Gustavo. Sou seu assistente de rotina. Como posso deixar seu dia mais leve?</span></div></div>
+        <div class="chat-suggestions"><button data-question="Como organizar meu dia?">Organizar meu dia</button><button data-question="Como criar um hábito?">Criar um hábito</button><button data-question="O que tenho hoje?">Ver minhas tarefas</button></div>
+        <form class="chat-form" id="chatForm"><input id="chatInput" autocomplete="off" placeholder="Digite sua dúvida..." aria-label="Digite sua dúvida"><button aria-label="Enviar mensagem">↑</button></form>
+    </section>
+    <section class="event-modal" id="eventModal" aria-hidden="true" role="dialog" aria-labelledby="eventModalTitle">
+        <div class="event-modal-card"><div class="event-modal-top"><div><p class="eyebrow">EDITOR DE CALENDÁRIO</p><h2 id="eventModalTitle">Novo evento</h2></div><button class="chat-close" id="closeEventModal" aria-label="Fechar editor">×</button></div>
+            <form id="eventForm"><label>O que você vai fazer?<input id="eventName" required maxlength="48" placeholder="Ex.: Estudar inglês"></label><label>Categoria<select id="eventTone"><option value="coral">Foco</option><option value="blue">Bem-estar</option><option value="yellow">Pessoal</option><option value="green">Concluído</option></select></label><div class="event-form-actions"><button type="button" class="delete-event" id="deleteEvent">Excluir</button><button class="save-event" type="submit">Salvar evento</button></div></form>
+        </div>
+    </section>
+    <section class="event-modal" id="routineModal" aria-hidden="true" role="dialog" aria-labelledby="routineModalTitle">
+        <div class="event-modal-card"><div class="event-modal-top"><div><p class="eyebrow">SUA ROTINA</p><h2 id="routineModalTitle">Nova rotina</h2></div><button class="chat-close" id="closeRoutineModal" aria-label="Fechar editor">×</button></div>
+            <form id="routineForm"><label>Qual é a próxima tarefa?<input id="routineName" required maxlength="48" placeholder="Ex.: Beber água"></label><label>Horário<input id="routineTime" class="routine-time" type="text" inputmode="numeric" maxlength="5" pattern="(?:[01][0-9]|2[0-3]):[0-5][0-9]" value="09:00" placeholder="09:00" aria-label="Horário no formato 24 horas"></label><div class="event-form-actions"><span></span><button class="save-event" type="submit">Adicionar rotina</button></div></form>
+        </div>
+    </section>
+    <div class="toast" id="toast" role="status"></div>
+    <script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro | Crie sua conta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="auth-body">
+
+    <div class="auth-page">
+        <div class="auth-card">
+
+            <div class="form-panel">
+                <div class="form-wrap">
+
+                    <div class="brand-mini" aria-label="Marca do projeto Ritmo">
+                        <span class="brand-mark">R</span>
+                        <div>
+                            <div class="brand-eyebrow">RITMO</div>
+                        </div>
+                    </div>
+
+                    <h1 class="title">Crie sua conta <span class="wave" aria-hidden="true"><i class="fa-solid fa-sparkles"></i></span></h1>
+                    <p class="subtitle">Comece a organizar o seu dia e acompanhar a sua rotina com mais clareza.</p>
+
+                    <form id="registerForm" novalidate>
+                        <div class="form-grid">
+                            <div class="field">
+                                <label for="name">Nome</label>
+                                <input type="text" id="name" name="name" placeholder="Seu nome" autocomplete="name" required>
+                                <span class="field-error" id="nameError"></span>
+                            </div>
+
+                            <div class="field">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="seu@email.com" autocomplete="email" required>
+                                <span class="field-error" id="emailError"></span>
+                            </div>
+                        </div>
+
+                        <div class="field full-width">
+                            <label for="password">Senha</label>
+                            <div class="password-wrap">
+                                <input type="password" id="password" name="password" placeholder="Mínimo de 8 caracteres" autocomplete="new-password" minlength="8" required>
+                                <button type="button" class="toggle-password" id="togglePassword" aria-label="Mostrar senha">
+                                    <svg id="eyeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z" />
+                                        <circle cx="12" cy="12" r="3" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <span class="field-error" id="passwordError"></span>
+                        </div>
+
+                        <div class="field full-width">
+                            <label for="confirmPassword">Confirmar senha</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Repita sua senha" autocomplete="new-password" required>
+                            <span class="field-error" id="confirmPasswordError"></span>
+                        </div>
+
+                        <label class="checkbox-row" for="terms">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <span>Concordo com os <a href="#" class="terms-link">termos e condições</a>.</span>
+                        </label>
+
+                        <button type="submit" class="btn-primary" id="submitBtn">
+                            <span class="btn-label">Criar conta</span>
+                        </button>
+
+                        <div class="divider"><span>ou</span></div>
+
+                        <button type="button" class="btn-social">
+                            <svg width="17" height="17" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="#4285F4"
+                                    d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 01-1.8 2.72v2.26h2.9C16.66 14.2 17.64 11.9 17.64 9.2z" />
+                                <path fill="#34A853"
+                                    d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.9-2.26c-.8.54-1.83.86-3.06.86-2.36 0-4.36-1.6-5.07-3.75H.96v2.33A9 9 0 009 18z" />
+                                <path fill="#FBBC05"
+                                    d="M3.93 10.67A5.4 5.4 0 013.64 9c0-.58.1-1.15.29-1.67V4.99H.96A9 9 0 000 9c0 1.45.35 2.83.96 4.01l2.97-2.34z" />
+                                <path fill="#EA4335"
+                                    d="M9 3.58c1.32 0 2.51.46 3.44 1.35l2.58-2.58C13.46.9 11.43 0 9 0A9 9 0 00.96 4.99l2.97 2.34C4.64 5.18 6.64 3.58 9 3.58z" />
+                            </svg>
+                            <span>Cadastrar com Google</span>
+                        </button>
+
+                        <button type="button" class="btn-social">
+                            <svg width="17" height="17" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="9" cy="9" r="9" fill="#1877F2" />
+                                <path fill="#fff"
+                                    d="M12.4 11.5l.4-2.5h-2.4V7.4c0-.7.2-1.2 1.2-1.2h1.3V3.9c-.2 0-1-.1-1.9-.1-1.9 0-3.2 1.1-3.2 3.2v1.8H5.6v2.5h2.2V16h2.6v-4.5h1.9z" />
+                            </svg>
+                            <span>Cadastrar com Facebook</span>
+                        </button>
+
+                        <p class="signup-text">Já tem uma conta? <a href="login.html">Entrar</a></p>
+                    </form>
+
+                    <div class="auth-dots" aria-hidden="true">
+                        <span class="dot coral"></span>
+                        <span class="dot blue"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+
+                    <p class="footer-text">© 2026 Todos os direitos reservados</p>
+                </div>
+            </div>
+
+            <div class="visual-panel">
+                <picture>
+                    <source media="(min-width: 860px)" srcset="./img/test.png">
+                    <img src="./img/tes.png" alt="Imagem de boas-vindas" class="visual-image">
+                </picture>
+                <div class="visual-overlay">
+                    <p class="visual-quote"><span class="quote-mark">“</span>O ritmo certo começa com um passo simples: começar.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            const form = document.getElementById('registerForm');
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirmPassword');
+            const termsCheckbox = document.getElementById('terms');
+            const submitBtn = document.getElementById('submitBtn');
+            const togglePassword = document.getElementById('togglePassword');
+            const eyeIcon = document.getElementById('eyeIcon');
+
+            const nameError = document.getElementById('nameError');
+            const emailError = document.getElementById('emailError');
+            const passwordError = document.getElementById('passwordError');
+            const confirmPasswordError = document.getElementById('confirmPasswordError');
+
+            function setError(input, errorEl, message) {
+                errorEl.textContent = message;
+                input.classList.toggle('input-invalid', Boolean(message));
+            }
+
+            function isValidEmail(value) {
+                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+            }
+
+            function validateName() {
+                const value = nameInput.value.trim();
+                if (!value) {
+                    setError(nameInput, nameError, 'Informe seu nome.');
+                    return false;
+                }
+                if (value.length < 2) {
+                    setError(nameInput, nameError, 'O nome deve ter pelo menos 2 caracteres.');
+                    return false;
+                }
+                setError(nameInput, nameError, '');
+                return true;
+            }
+
+            function validateEmail() {
+                const value = emailInput.value.trim();
+                if (!value) {
+                    setError(emailInput, emailError, 'Informe seu e-mail.');
+                    return false;
+                }
+                if (!isValidEmail(value)) {
+                    setError(emailInput, emailError, 'Informe um e-mail válido.');
+                    return false;
+                }
+                setError(emailInput, emailError, '');
+                return true;
+            }
+
+            function validatePassword() {
+                const value = passwordInput.value;
+                if (!value) {
+                    setError(passwordInput, passwordError, 'Informe sua senha.');
+                    return false;
+                }
+                if (value.length < 8) {
+                    setError(passwordInput, passwordError, 'A senha deve ter no mínimo 8 caracteres.');
+                    return false;
+                }
+                setError(passwordInput, passwordError, '');
+                return true;
+            }
+
+            function validateConfirmPassword() {
+                const value = confirmPasswordInput.value;
+                if (!value) {
+                    setError(confirmPasswordInput, confirmPasswordError, 'Confirme sua senha.');
+                    return false;
+                }
+                if (value !== passwordInput.value) {
+                    setError(confirmPasswordInput, confirmPasswordError, 'As senhas não conferem.');
+                    return false;
+                }
+                setError(confirmPasswordInput, confirmPasswordError, '');
+                return true;
+            }
+
+            [nameInput, emailInput, passwordInput, confirmPasswordInput].forEach((input) => {
+                input.addEventListener('input', function () {
+                    if (input === nameInput && nameError.textContent) validateName();
+                    if (input === emailInput && emailError.textContent) validateEmail();
+                    if (input === passwordInput && passwordError.textContent) validatePassword();
+                    if (input === confirmPasswordInput && confirmPasswordError.textContent) validateConfirmPassword();
+                });
+            });
+
+            togglePassword.addEventListener('click', function () {
+                const isPassword = passwordInput.type === 'password';
+                passwordInput.type = isPassword ? 'text' : 'password';
+                confirmPasswordInput.type = isPassword ? 'text' : 'password';
+                togglePassword.setAttribute('aria-label', isPassword ? 'Ocultar senha' : 'Mostrar senha');
+
+                eyeIcon.innerHTML = isPassword
+                    ? '<path d="M17.94 17.94A10.94 10.94 0 0112 20c-7 0-11-8-11-8a21.8 21.8 0 015.06-6.06M9.9 4.24A10.94 10.94 0 0112 4c7 0 11 8 11 8a21.8 21.8 0 01-2.61 3.68M14.12 14.12a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>'
+                    : '<path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/>';
+            });
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const nameOk = validateName();
+                const emailOk = validateEmail();
+                const passwordOk = validatePassword();
+                const confirmPasswordOk = validateConfirmPassword();
+                const termsOk = termsCheckbox.checked;
+
+                if (!termsOk) {
+                    alert('Você precisa aceitar os termos e condições para continuar.');
+                    return;
+                }
+
+                if (!nameOk || !emailOk || !passwordOk || !confirmPasswordOk) return;
+
+                submitBtn.disabled = true;
+                submitBtn.querySelector('.btn-label').textContent = 'Criando conta...';
+
+                setTimeout(function () {
+                    submitBtn.disabled = false;
+                    submitBtn.querySelector('.btn-label').textContent = 'Criar conta';
+                    alert('Conta criada com sucesso! (substitua este trecho pela sua chamada de API real)');
+                    form.reset();
+                }, 1200);
+            });
+        })();
+    </script>
+
+</body>
+
+</html>

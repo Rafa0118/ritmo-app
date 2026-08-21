@@ -314,6 +314,42 @@ button, a { font: inherit; } button { cursor: pointer; }
   outline-offset: 2px;
 }
 
+.form-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 18px;
+  color: #77817d;
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.checkbox-row input {
+  margin-top: 3px;
+  width: 16px;
+  height: 16px;
+  accent-color: #193b39;
+}
+
+.terms-link {
+  color: #193b39;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.terms-link:hover {
+  text-decoration: underline;
+}
+
 .signup-text {
   text-align: center;
   margin-top: 8px;
@@ -339,7 +375,14 @@ button, a { font: inherit; } button { cursor: pointer; }
 .auth-dots .dot {
   width: 6px;
   height: 6px;
+  display: inline-block;
+  border-radius: 50%;
 }
+
+.dot.coral { background: var(--coral); }
+.dot.blue { background: var(--blue); }
+.dot.yellow { background: var(--yellow); }
+.dot.green { background: var(--green); }
 
 .footer-text {
   text-align: center;
